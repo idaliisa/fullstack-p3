@@ -16,8 +16,8 @@ const url =
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
 
 const personSchema = new mongoose.Schema({
-  name: {type: String, unique: true},
-  number: {type: String},
+  name: { type: String, unique: true },
+  number: { type: String },
 })
 
 personSchema.plugin(uniqueValidator)
@@ -31,17 +31,17 @@ const person = new Person({
 
 
 if (newName != null && newNumber != null) {
-    person.save().then(result => {
-        console.log('person saved!')
-        mongoose.connection.close()
-      })
-} else {    
-    console.log('phonebook:')
-    Person.find({}).then(persons => {
-        persons.forEach(person => {
-        console.log(person.name, person.number)
-        })
-        mongoose.connection.close()
+  person.save().then(result => {
+    console.log('person saved!')
+    mongoose.connection.close()
+  })
+} else {
+  console.log('phonebook:')
+  Person.find({}).then(persons => {
+    persons.forEach(person => {
+      console.log(person.name, person.number)
     })
+    mongoose.connection.close()
+  })
 }
 
